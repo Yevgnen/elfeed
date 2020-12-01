@@ -67,15 +67,11 @@ search buffer or show a concrete entry."
     ;; do not evaluate to themselves. The quote is harmless for
     ;; byte-compiled function objects.
     ',(lambda ()
-        (if (version< (org-version) "9.0")
-            (with-no-warnings
-              (org-add-link-type "elfeed" #'elfeed-link-open)
-              (add-hook 'org-store-link-functions #'elfeed-link-store-link))
-          (with-no-warnings
-            (org-link-set-parameters
-             "elfeed"
-             :follow #'elfeed-link-open
-             :store #'elfeed-link-store-link))))))
+        (with-no-warnings
+          (org-link-set-parameters
+           "elfeed"
+           :follow #'elfeed-link-open
+           :store #'elfeed-link-store-link)))))
 
 (provide 'elfeed-link)
 
